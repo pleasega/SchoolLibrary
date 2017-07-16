@@ -32,4 +32,4 @@ Displays all current book borrows and borrow information for a particular studen
 Displays all past and current borrows and borrow information for a particular student.
 
 ## Todo List
-* Fix any reported bugs and add enhancement suggestions.
+* Fix any reported bugs and implement any enhancement suggestions.
