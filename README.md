@@ -7,5 +7,6 @@ A basic school library program, includes lending and returning with Access DB.
 ### Access DB:
 * Lendings
 * Books
-* Password: fugeeschool123
 * Includes administrator query scripts.
+
+Set your own password in Access DB and set the password and path to the database file in the program config under accessDBPath and passphrase.
