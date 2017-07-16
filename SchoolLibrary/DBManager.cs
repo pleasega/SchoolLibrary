@@ -24,7 +24,8 @@ namespace SchoolLibrary
         string returnBookSQL = "UPDATE Lendings SET Returned = TRUE, Return_Time = @returntime WHERE Book_ID = @bookid AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
 
         static string accessDBPath = ConfigurationManager.AppSettings["accessDBPath"];
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + accessDBPath + "; Jet OLEDB:Database Password=fugeeschool123; Persist Security Info=True;");
+        static string passphrase = ConfigurationManager.AppSettings["passphrase"];
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + accessDBPath + "; Jet OLEDB:Database Password=" + passphrase + "; Persist Security Info=True;");
 
         private DateTime GetDateWithoutMilliseconds(DateTime d)
         {
