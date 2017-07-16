@@ -25,40 +25,59 @@ namespace SchoolLibrary
             this.Text = "Scan Barcode [" + actionType + "]"; 
         }
 
+        private bool checkDuplicateBook(List<string> bookIDListForDC)
+        {
+            if (bookIDListForDC.Distinct().Count() == bookIDListForDC.Count())
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            if (book1ID_textbox.Text.Equals(""))
+           
+            ArrayList lendingList = new ArrayList();
+
+            string[] allTextBoxes = { book1ID_textbox.Text, book2ID_textbox.Text, book3ID_textbox.Text, book4ID_textbox.Text };
+            // book id list for duplicate checking only
+            List<string> bookIDListForDC = new List<string>();
+
+            int emptyTextboxCount = 0;
+            foreach(string bookID in allTextBoxes)
+            {
+                if (!String.IsNullOrEmpty(bookID))
+                {
+                    Lending lending = new Lending();
+                    lending.BookID = bookID.ToUpper();
+                    lendingList.Add(lending);
+                    bookIDListForDC.Add(bookID.ToUpper());
+                }
+                else
+                {
+                    emptyTextboxCount++;
+                }
+            }
+
+            if (emptyTextboxCount == allTextBoxes.Count())
             {
                 MessageBox.Show("Please scan a book's barcode.", "Empty Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            
-            ArrayList lendingList = new ArrayList();
-
-            Lending lending1 = new Lending();
-            lending1.BookID = book1ID_textbox.Text;
-            lendingList.Add(lending1);
-
-            if (!book2ID_textbox.Text.Equals(""))
+            if (!checkDuplicateBook(bookIDListForDC))
             {
-                Lending lending2 = new Lending();
-                lending2.BookID = book2ID_textbox.Text;
-                lendingList.Add(lending2);
+                if (actionType.Equals("Borrow"))
+                {
+                    MessageBox.Show("You cannot borrow the same book.", "Duplicate Book", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (actionType.Equals("Return"))
+                {
+                    MessageBox.Show("You are trying to return many same books.", "Duplicate Book", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
-            if (!book3ID_textbox.Text.Equals(""))
-            {
-                Lending lending3 = new Lending();
-                lending3.BookID = book3ID_textbox.Text;
-                lendingList.Add(lending3);
-            }
-            if (!book4ID_textbox.Text.Equals(""))
-            {
-                Lending lending4 = new Lending();
-                lending4.BookID = book4ID_textbox.Text;
-                lendingList.Add(lending4);
-            }
-
 
             // check if book id is valid
             foreach (Lending lending in lendingList)

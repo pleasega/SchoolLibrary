@@ -19,7 +19,7 @@ namespace SchoolLibrary
 
         string selectUnreturnedCountSQL = "SELECT Count(*) AS Unreturned FROM Lendings WHERE Book_ID = @bookid AND Returned = FALSE;";
 
-        string selectStudentBookUnreturnedCountSQL = "SELECT * FROM Lendings WHERE Book_ID = @bookid AND Returned = FALSE AND Borrower_Name = @borrowername;";
+        string selectStudentBookUnreturnedCountSQL = "SELECT * FROM Lendings WHERE Book_ID = @bookid AND Returned = FALSE AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
 
         string returnBookSQL = "UPDATE Lendings SET Returned = TRUE, Return_Time = @returntime WHERE Book_ID = @bookid AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
 
@@ -181,7 +181,7 @@ namespace SchoolLibrary
                 OleDbCommand cmd = new OleDbCommand(selectStudentBookUnreturnedCountSQL, conn);
                 cmd.Parameters.AddWithValue("@bookid", lending.BookID);
                 cmd.Parameters.AddWithValue("@borrowername", lending.BorrowerName);
-                //cmd.Parameters.AddWithValue("@borrowerid", lending.BorrowerID);
+                cmd.Parameters.AddWithValue("@borrowerid", lending.BorrowerID);
 
                 OleDbDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows || reader != null)
