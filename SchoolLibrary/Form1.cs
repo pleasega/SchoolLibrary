@@ -30,5 +30,6 @@ namespace SchoolLibrary
             frmScan.Show();
             this.Hide();
         }
+
     }
 }
