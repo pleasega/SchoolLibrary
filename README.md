@@ -36,3 +36,5 @@ Displays all past and current borrows and borrow information for a particular st
 
 ## Questions or Issues?
 If you're having issues with or have questions about the program/system, [file an issue](https://github.com/pleasega/SchoolLibrary/issues) in this repository. [Pull requests](https://github.com/pleasega/SchoolLibrary/pulls) are welcome as well!
+
+Please respect the [license](https://github.com/pleasega/SchoolLibrary/blob/master/LICENSE). Licensed under the GNU General Public License v2.0.
