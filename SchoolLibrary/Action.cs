@@ -48,6 +48,13 @@ namespace SchoolLibrary
 
                 if (actionType.Equals("Borrow"))
                 {
+                    bool studentBookUnreturnExist = dbManager.checkStudentBookUnreturnExist(lending);
+                    if (studentBookUnreturnExist == true)
+                    {
+                        MessageBox.Show("You cannot borrow the same book.", "Duplicate Book", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     int unreturnedQuantity = dbManager.selectUnreturnQuantity(lending.BookID);
                     int totalQuantity = dbManager.selectBook(lending.BookID).Quantity;
                     bool bookAvailable = totalQuantity > unreturnedQuantity;
