@@ -5,7 +5,7 @@ A basic school library program, includes lending and returning with Access DB.
 Allow student to borrow one of the same book.
 
 ### Access DB:
--Lendings
--Books
-Password: fugeeschool123
-Includes administrator query scripts.
+* Lendings
+* Books
+* Password: fugeeschool123
+* Includes administrator query scripts.
