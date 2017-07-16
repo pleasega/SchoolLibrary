@@ -3,7 +3,7 @@ A basic school library program, includes lending and returning with Access DB.
 
 ## Installation
 1. Extract the folder from the compressed file to a discrete directory/location and set a shortcut to the desktop.
-2. Install [dependencies](#dependencies).
+2. Install required [dependencies](#dependencies).
 3. Add library books to the database through Microsoft Access.
 4. Encrypt Access DB with a desired password and set the password and path to the database file in the program config file under `accessDBPath` and `passphrase`.
 
