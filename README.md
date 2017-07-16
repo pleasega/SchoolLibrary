@@ -33,3 +33,6 @@ Displays all past and current borrows and borrow information for a particular st
 
 ## Todo List
 * Fix any reported bugs and implement any enhancement suggestions.
+
+## Questions or Issues?
+If you're having issues with or have questions about the program/system, [file an issue](https://github.com/pleasega/SchoolLibrary/issues) in this repository. [Pull requests](https://github.com/pleasega/SchoolLibrary/pulls) are welcome as well!
