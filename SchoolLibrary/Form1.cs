@@ -21,6 +21,7 @@ namespace SchoolLibrary
         {
             Scan frmScan = new Scan("Borrow");
             frmScan.Show();
+            this.Owner = frmScan;
             this.Hide();
         }
 
@@ -28,6 +29,7 @@ namespace SchoolLibrary
         {
             Scan frmScan = new Scan("Return");
             frmScan.Show();
+            this.Owner = frmScan;
             this.Hide();
         }
 

@@ -105,6 +105,7 @@ namespace SchoolLibrary
 
                 Action frmAction = new Action(actionType, lendingList);
                 frmAction.Show();
+                this.Owner = frmAction;
                 this.Hide();
             }
 
@@ -112,6 +113,7 @@ namespace SchoolLibrary
             {
                 Action frmAction = new Action(actionType, lendingList);
                 frmAction.Show();
+                this.Owner = frmAction;
                 this.Hide();
             }
 
@@ -121,6 +123,7 @@ namespace SchoolLibrary
         {
             this.Hide();
             Form1 frm1 = new Form1();
+            this.Owner = frm1;
             frm1.Show();
         }
     }

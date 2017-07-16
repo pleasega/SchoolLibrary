@@ -126,6 +126,7 @@ namespace SchoolLibrary
         {
             this.Hide();
             Scan frmScan = new Scan(actionType);
+            this.Owner = frmScan;
             frmScan.Show();
         }
     }
