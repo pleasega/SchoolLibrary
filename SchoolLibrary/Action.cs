@@ -55,23 +55,23 @@ namespace SchoolLibrary
                         return;
                     }
 
-                    int unreturnedQuantity = dbManager.selectUnreturnQuantity(lending.BookID);
-                    int totalQuantity = dbManager.selectBook(lending.BookID).Quantity;
+                    int unreturnedQuantity = dbManager.selectUnreturnQuantity(lending.ISBN);
+                    int totalQuantity = dbManager.selectBook(lending.ISBN).Quantity;
                     bool bookAvailable = totalQuantity > unreturnedQuantity;
                     if (bookAvailable == false)
                     {
-                        MessageBox.Show("Please return the book ID " + lending.BookID + " before trying to borrow.", "Book Not Available", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please return the book ID " + lending.ISBN + " before trying to borrow.", "Book Not Available", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     if (dbManager.insertLending(lending) == false)
                     {
-                        actionUnsuccessfulList.Add(lending.BookID);
+                        actionUnsuccessfulList.Add(lending.ISBN);
                     }
                 }
                 else if (actionType.Equals("Return")) //check person borrowed
                 {
-                    string notBorrowedMessage = "The book " + lending.BookID + " has not been borrowed under this student.";
+                    string notBorrowedMessage = "The book " + lending.ISBN + " has not been borrowed under this student.";
 
                     bool studentBookUnreturnExist = dbManager.checkStudentBookUnreturnExist(lending);
                     if (studentBookUnreturnExist == false)

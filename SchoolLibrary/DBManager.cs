@@ -11,17 +11,17 @@ namespace SchoolLibrary
 {
     class DBManager
     {
-        string insertBorrowSQL = "INSERT INTO Lendings (Book_ID,Borrow_Time,Borrower_ID,Borrower_Name,Returned,Return_Time) " +
-            "VALUES (@bookid, @borrowtime, @borrowerid, @borrowername, FALSE, NULL);";
+        string insertBorrowSQL = "INSERT INTO Lendings (ISBN,Borrow_Time,Borrower_ID,Borrower_Name,Returned,Return_Time) " +
+            "VALUES (@isbn, @borrowtime, @borrowerid, @borrowername, FALSE, NULL);";
 
-        string selectBookIDSQL = "SELECT Book_ID FROM Books WHERE Book_ID = @bookid;";
-        string selectBookSQL = "SELECT * FROM Books WHERE Book_ID = @bookid;";
+        string selectBookIDSQL = "SELECT ISBN FROM Books WHERE ISBN = @isbn;";
+        string selectBookSQL = "SELECT * FROM Books WHERE ISBN = @bookid;";
 
-        string selectUnreturnedCountSQL = "SELECT Count(*) AS Unreturned FROM Lendings WHERE Book_ID = @bookid AND Returned = FALSE;";
+        string selectUnreturnedCountSQL = "SELECT Count(*) AS Unreturned FROM Lendings WHERE ISBN = @isbn AND Returned = FALSE;";
 
-        string selectStudentBookUnreturnedCountSQL = "SELECT * FROM Lendings WHERE Book_ID = @bookid AND Returned = FALSE AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
+        string selectStudentBookUnreturnedCountSQL = "SELECT * FROM Lendings WHERE ISBN = @isbn AND Returned = FALSE AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
 
-        string returnBookSQL = "UPDATE Lendings SET Returned = TRUE, Return_Time = @returntime WHERE Book_ID = @bookid AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
+        string returnBookSQL = "UPDATE Lendings SET Returned = TRUE, Return_Time = @returntime WHERE ISBN = @isbn AND Borrower_Name = @borrowername AND (@borrowerid IS NULL OR Borrower_ID = @borrowerid);";
 
         static string accessDBPath = ConfigurationManager.AppSettings["accessDBPath"];
         static string passphrase = ConfigurationManager.AppSettings["passphrase"];
@@ -38,7 +38,7 @@ namespace SchoolLibrary
             {
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(insertBorrowSQL, conn);
-                cmd.Parameters.AddWithValue("@bookid", lending.BookID);
+                cmd.Parameters.AddWithValue("@isbn", lending.ISBN);
                 cmd.Parameters.AddWithValue("@borrowtime", GetDateWithoutMilliseconds(DateTime.Now));
                 cmd.Parameters.AddWithValue("@borrowerid", lending.BorrowerID);
                 cmd.Parameters.AddWithValue("@borrowername", lending.BorrowerName);
@@ -58,14 +58,14 @@ namespace SchoolLibrary
             return false;
         }
 
-        public int selectUnreturnQuantity(string bookID)
+        public int selectUnreturnQuantity(string isbn)
         {
             try
             {
                 conn.Open();
 
                 OleDbCommand cmd = new OleDbCommand(selectUnreturnedCountSQL, conn);
-                cmd.Parameters.AddWithValue("@bookid", bookID);
+                cmd.Parameters.AddWithValue("@isbn", isbn);
                 OleDbDataReader reader = cmd.ExecuteReader();
                 
                 while (reader.Read())
@@ -85,13 +85,13 @@ namespace SchoolLibrary
             return 99;
         }
 
-        public bool bookIDExists(string bookID)
+        public bool isbnExists(string isbn)
         {
             try
             {
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(selectBookIDSQL, conn);
-                cmd.Parameters.AddWithValue("@bookid", bookID);
+                cmd.Parameters.AddWithValue("@isbn", isbn);
                 OleDbDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -114,20 +114,19 @@ namespace SchoolLibrary
             return false;
         }
 
-        public Book selectBook(string bookID)
+        public Book selectBook(string isbn)
         {
             try
             {
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(selectBookSQL, conn);
-                cmd.Parameters.AddWithValue("@bookid", bookID);
+                cmd.Parameters.AddWithValue("@isbn", isbn);
                 OleDbDataReader reader = cmd.ExecuteReader();
 
                 Book book = new Book();
                 while (reader.Read())
                 {
-                    book.BookID = reader["Book_ID"].ToString();
-                    book.Isbn = reader["ISBN"].ToString();
+                    book.ISBN = reader["ISBN"].ToString();
                     book.Title = reader["Title"].ToString();
                     book.Author = reader["Author"].ToString();
                     book.Remarks = reader["Remarks"].ToString();
@@ -154,7 +153,7 @@ namespace SchoolLibrary
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(returnBookSQL, conn);
                 cmd.Parameters.AddWithValue("@returntime", GetDateWithoutMilliseconds(DateTime.Now));
-                cmd.Parameters.AddWithValue("@bookid", lending.BookID);
+                cmd.Parameters.AddWithValue("@isbn", lending.ISBN);
                 cmd.Parameters.AddWithValue("@borrowername", lending.BorrowerName);
                 cmd.Parameters.AddWithValue("@borrowerid", lending.BorrowerID);
 
@@ -179,7 +178,7 @@ namespace SchoolLibrary
             {
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(selectStudentBookUnreturnedCountSQL, conn);
-                cmd.Parameters.AddWithValue("@bookid", lending.BookID);
+                cmd.Parameters.AddWithValue("@isbn", lending.ISBN);
                 cmd.Parameters.AddWithValue("@borrowername", lending.BorrowerName);
                 cmd.Parameters.AddWithValue("@borrowerid", lending.BorrowerID);
 

@@ -25,9 +25,9 @@ namespace SchoolLibrary
             this.Text = "Scan Barcode [" + actionType + "]"; 
         }
 
-        private bool checkDuplicateBook(List<string> bookIDListForDC)
+        private bool checkDuplicateBook(List<string> isbnListForDC)
         {
-            if (bookIDListForDC.Distinct().Count() == bookIDListForDC.Count())
+            if (isbnListForDC.Distinct().Count() == isbnListForDC.Count())
             {
                 return true;
             }
@@ -39,19 +39,19 @@ namespace SchoolLibrary
            
             ArrayList lendingList = new ArrayList();
 
-            string[] allTextBoxes = { book1ID_textbox.Text, book2ID_textbox.Text, book3ID_textbox.Text, book4ID_textbox.Text };
+            string[] allTextBoxes = { book1ISBN_textbox.Text, book2ISBN_textbox.Text, book3ISBN_textbox.Text, book4ISBN_textbox.Text };
             // book id list for duplicate checking only
-            List<string> bookIDListForDC = new List<string>();
+            List<string> isbnListForDC = new List<string>();
 
             int emptyTextboxCount = 0;
-            foreach(string bookID in allTextBoxes)
+            foreach(string ISBN in allTextBoxes)
             {
-                if (!String.IsNullOrEmpty(bookID))
+                if (!String.IsNullOrEmpty(ISBN))
                 {
                     Lending lending = new Lending();
-                    lending.BookID = bookID.ToUpper();
+                    lending.ISBN = ISBN.ToUpper();
                     lendingList.Add(lending);
-                    bookIDListForDC.Add(bookID.ToUpper());
+                    isbnListForDC.Add(ISBN.ToUpper());
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace SchoolLibrary
                 return;
             }
 
-            if (!checkDuplicateBook(bookIDListForDC))
+            if (!checkDuplicateBook(isbnListForDC))
             {
                 if (actionType.Equals("Borrow"))
                 {
@@ -82,9 +82,9 @@ namespace SchoolLibrary
             // check if book id is valid
             foreach (Lending lending in lendingList)
             {
-                if (dbManager.bookIDExists(lending.BookID) == false)
+                if (dbManager.isbnExists(lending.ISBN) == false)
                 {
-                    MessageBox.Show("The book ID " + lending.BookID + " does not exist, no such book.", "Invalid Book ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The book ID " + lending.ISBN + " does not exist, no such book.", "Invalid Book ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -93,12 +93,12 @@ namespace SchoolLibrary
             {
                 foreach (Lending lending in lendingList)
                 {
-                    int unreturnedQuantity = dbManager.selectUnreturnQuantity(lending.BookID);
-                    int totalQuantity = dbManager.selectBook(lending.BookID).Quantity;
+                    int unreturnedQuantity = dbManager.selectUnreturnQuantity(lending.ISBN);
+                    int totalQuantity = dbManager.selectBook(lending.ISBN).Quantity;
                     bool bookAvailable = totalQuantity > unreturnedQuantity;
                     if (bookAvailable == false)
                     {
-                        MessageBox.Show("Please return the book ID " + lending.BookID + " before trying to borrow.", "Book Not Available", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please return the book ID " + lending.ISBN + " before trying to borrow.", "Book Not Available", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }

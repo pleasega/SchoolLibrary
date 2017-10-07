@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.book1ID_textbox = new System.Windows.Forms.TextBox();
+            this.book1ISBN_textbox = new System.Windows.Forms.TextBox();
             this.continue_btn = new System.Windows.Forms.Button();
             this.cancel_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.book2ID_textbox = new System.Windows.Forms.TextBox();
+            this.book2ISBN_textbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.book3ID_textbox = new System.Windows.Forms.TextBox();
-            this.book4ID_textbox = new System.Windows.Forms.TextBox();
+            this.book3ISBN_textbox = new System.Windows.Forms.TextBox();
+            this.book4ISBN_textbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -52,12 +52,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Scan book barcode";
             // 
-            // book1ID_textbox
+            // book1ISBN_textbox
             // 
-            this.book1ID_textbox.Location = new System.Drawing.Point(62, 59);
-            this.book1ID_textbox.Name = "book1ID_textbox";
-            this.book1ID_textbox.Size = new System.Drawing.Size(187, 20);
-            this.book1ID_textbox.TabIndex = 1;
+            this.book1ISBN_textbox.Location = new System.Drawing.Point(62, 59);
+            this.book1ISBN_textbox.Name = "book1ISBN_textbox";
+            this.book1ISBN_textbox.Size = new System.Drawing.Size(187, 20);
+            this.book1ISBN_textbox.TabIndex = 1;
             // 
             // continue_btn
             // 
@@ -97,12 +97,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Book 2:";
             // 
-            // book2ID_textbox
+            // book2ISBN_textbox
             // 
-            this.book2ID_textbox.Location = new System.Drawing.Point(62, 84);
-            this.book2ID_textbox.Name = "book2ID_textbox";
-            this.book2ID_textbox.Size = new System.Drawing.Size(187, 20);
-            this.book2ID_textbox.TabIndex = 6;
+            this.book2ISBN_textbox.Location = new System.Drawing.Point(62, 84);
+            this.book2ISBN_textbox.Name = "book2ISBN_textbox";
+            this.book2ISBN_textbox.Size = new System.Drawing.Size(187, 20);
+            this.book2ISBN_textbox.TabIndex = 6;
             // 
             // label4
             // 
@@ -113,19 +113,19 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Book 3:";
             // 
-            // book3ID_textbox
+            // book3ISBN_textbox
             // 
-            this.book3ID_textbox.Location = new System.Drawing.Point(62, 110);
-            this.book3ID_textbox.Name = "book3ID_textbox";
-            this.book3ID_textbox.Size = new System.Drawing.Size(187, 20);
-            this.book3ID_textbox.TabIndex = 8;
+            this.book3ISBN_textbox.Location = new System.Drawing.Point(62, 110);
+            this.book3ISBN_textbox.Name = "book3ISBN_textbox";
+            this.book3ISBN_textbox.Size = new System.Drawing.Size(187, 20);
+            this.book3ISBN_textbox.TabIndex = 8;
             // 
-            // book4ID_textbox
+            // book4ISBN_textbox
             // 
-            this.book4ID_textbox.Location = new System.Drawing.Point(62, 137);
-            this.book4ID_textbox.Name = "book4ID_textbox";
-            this.book4ID_textbox.Size = new System.Drawing.Size(187, 20);
-            this.book4ID_textbox.TabIndex = 9;
+            this.book4ISBN_textbox.Location = new System.Drawing.Point(62, 137);
+            this.book4ISBN_textbox.Name = "book4ISBN_textbox";
+            this.book4ISBN_textbox.Size = new System.Drawing.Size(187, 20);
+            this.book4ISBN_textbox.TabIndex = 9;
             // 
             // label5
             // 
@@ -152,15 +152,15 @@
             this.ClientSize = new System.Drawing.Size(261, 206);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.book4ID_textbox);
-            this.Controls.Add(this.book3ID_textbox);
+            this.Controls.Add(this.book4ISBN_textbox);
+            this.Controls.Add(this.book3ISBN_textbox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.book2ID_textbox);
+            this.Controls.Add(this.book2ISBN_textbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.continue_btn);
-            this.Controls.Add(this.book1ID_textbox);
+            this.Controls.Add(this.book1ISBN_textbox);
             this.Controls.Add(this.label1);
             this.Name = "Scan";
             this.ShowIcon = false;
@@ -173,15 +173,15 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox book1ID_textbox;
+        private System.Windows.Forms.TextBox book1ISBN_textbox;
         private System.Windows.Forms.Button continue_btn;
         private System.Windows.Forms.Button cancel_btn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox book2ID_textbox;
+        private System.Windows.Forms.TextBox book2ISBN_textbox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox book3ID_textbox;
-        private System.Windows.Forms.TextBox book4ID_textbox;
+        private System.Windows.Forms.TextBox book3ISBN_textbox;
+        private System.Windows.Forms.TextBox book4ISBN_textbox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
     }
