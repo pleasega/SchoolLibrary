@@ -23,6 +23,10 @@ Displays all past and current borrows and borrow information for a particular bo
 
 Displays all books' information including the quantity and currently borrowed quantity.
 
+* **Show Late Returns**
+
+Displays all late return records.
+
 * **Show Student Active Borrows**
 
 Displays all current book borrows and borrow information for a particular student.
